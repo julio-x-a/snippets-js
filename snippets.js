@@ -17,3 +17,33 @@ async function ajax(url, options = null) {
     console.log(err.status, err.statusText);
   }
 }
+
+/**
+ * Obtiene la fecha actual formateada según el parametro pasado.
+ * @param {String} format String que representa como será formateada la fecha 
+ * @returns String
+ */
+
+export const getFecha = (format) => {
+  let date = new Date(),
+    year = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate().toString().padStart(2, '0'),
+    formatDate = '';
+  month = month.toString().padStart(2, '0');
+
+  switch (format.toLowerCase()) {
+    case 'dd/mm/yyyy':
+      formatDate = `${day}/${month}/${year}`;
+      break;
+    case 'yymmdd':
+      year = year.toString().substring(2);
+      formatDate = `${year}${month}${day}`;
+      break;
+    case 'yyyy-mm-dd':
+      formatDate = `${year}-${month}-${day}`;
+      break;
+  }
+  return formatDate;
+};
+
