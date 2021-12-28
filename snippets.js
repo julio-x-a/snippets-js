@@ -20,11 +20,11 @@ async function ajax(url, options = null) {
 
 /**
  * Obtiene la fecha actual formateada según el parametro pasado.
- * @param {String} format String que representa como será formateada la fecha 
+ * @param {String} format String que representa como será formateada la fecha
  * @returns String
  */
 
-export const getFecha = (format) => {
+const getFecha = (format) => {
   let date = new Date(),
     year = date.getFullYear(),
     month = date.getMonth() + 1,
@@ -47,3 +47,15 @@ export const getFecha = (format) => {
   return formatDate;
 };
 
+/**
+ *
+ * @param {Object} values
+ * @returns FormData
+ */
+function appendForm(values) {
+  let formdata = new FormData(values.form);
+  for (const key in values) {
+    formdata.append(key, values[key]);
+  }
+  return formdata;
+}
